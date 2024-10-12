@@ -15,8 +15,8 @@ public class UserServiceImpl implements UserService{
     public ResponseEntity<?> sendMoney(String username, String email, double amount) {
         User sender = userRepository.findByUsername(username);
         User recipient = userRepository.findByEmail(email);
-        sender.setBalance(sender.getBalance() - amount);
-        recipient.setBalance(recipient.getBalance() + amount);
+        sender.setCurrentBalance(sender.getCurrentBalance() - amount);
+        recipient.setCurrentBalance(recipient.getCurrentBalance() + amount);
         userRepository.save(sender);
         userRepository.save(recipient);
         return ResponseEntity.ok().build();

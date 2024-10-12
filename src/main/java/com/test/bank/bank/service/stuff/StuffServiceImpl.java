@@ -1,7 +1,8 @@
 package com.test.bank.bank.service.stuff;
 
 
-import com.test.bank.bank.domain.entity.User;
+import com.test.bank.bank.domain.dto.UserCreateDTO;
+import com.test.bank.bank.domain.mapper.CreateUserMapper;
 import com.test.bank.bank.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,12 +15,13 @@ public class StuffServiceImpl implements StuffService{
     private UserRepository userRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private CreateUserMapper createUserMapper;
 
 
     @Override
-    public ResponseEntity<?> addUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
+    public ResponseEntity<?> addUser(UserCreateDTO user) {
+        userRepository.save(createUserMapper.userCreateDtoToUserEntity(user));
         return ResponseEntity.ok().build();
     }
 }

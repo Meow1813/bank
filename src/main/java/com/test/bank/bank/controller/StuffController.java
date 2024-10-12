@@ -1,6 +1,6 @@
 package com.test.bank.bank.controller;
 
-import com.test.bank.bank.domain.entity.User;
+import com.test.bank.bank.domain.dto.UserCreateDTO;
 import com.test.bank.bank.service.stuff.StuffService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class StuffController {
     private StuffService stuffService;
 
     @PostMapping("/addUser")
-    public ResponseEntity<?> user(@RequestBody User user){
+    public ResponseEntity<?> user(@RequestBody UserCreateDTO user){
         log.info("контроллер");
         return stuffService.addUser(user);
 

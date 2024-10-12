@@ -2,7 +2,6 @@ package com.test.bank.bank.domain.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 
@@ -12,19 +11,30 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
+    @Column(unique = true)
     private String username;
+    private String name;
+    private String surname;
+    private String patronymic;
     private String password;
+    @Column(unique = true)
     private String phoneNumber;
+    @Column(unique = true)
     private String email;
     @Min(1)
-    private double balance;
+    private double currentBalance;
+    private double startBalance;
     private boolean enabled=true;
+
+
 
     @Override
     public final boolean equals(Object o) {
