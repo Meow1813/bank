@@ -1,7 +1,9 @@
 package com.test.bank.bank.service.search;
 
 import com.test.bank.bank.domain.dto.ClientSearchRequest;
+import com.test.bank.bank.domain.dto.SearchUserDTO;
 import com.test.bank.bank.domain.entity.User;
+import com.test.bank.bank.domain.mapper.ReturnSearchUserMapper;
 import com.test.bank.bank.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,8 +17,10 @@ import org.springframework.stereotype.Service;
 public class SearchServiceImpl implements SearchService{
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private ReturnSearchUserMapper searchUserMapper;
 
-    public Page<User> searchUser(ClientSearchRequest request){
+    public Page<SearchUserDTO> searchUser(ClientSearchRequest request){
         Pageable pageable = PageRequest.of(
                 request.getPage(),
                 request.getSize(),
@@ -24,7 +28,8 @@ public class SearchServiceImpl implements SearchService{
         );
 
         Specification<User> specification = UserSpecification.filter(request);
-        return userRepository.findAll(specification, pageable);
+        Page<User> usersPage = userRepository.findAll(specification, pageable);
+        return usersPage.map(x-> searchUserMapper.userToSearchUserDTO(x));
     }
 
 }

@@ -1,6 +1,7 @@
 package com.test.bank.bank.controller;
 
 import com.test.bank.bank.domain.dto.ClientSearchRequest;
+import com.test.bank.bank.domain.dto.SearchUserDTO;
 import com.test.bank.bank.domain.entity.User;
 import com.test.bank.bank.service.search.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class SearchController {
     private  SearchService searchService;
 
     @GetMapping("/user")
-    public Page<User> searchClients(ClientSearchRequest request) {
+    public Page<SearchUserDTO> searchClients(ClientSearchRequest request) {
         return searchService.searchUser(request);
     }
 

@@ -36,7 +36,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers(AUTH_WHITELIST).permitAll()  // Используйте antMatchers
+                        .requestMatchers(AUTH_WHITELIST).permitAll()
                         .requestMatchers("/api/service/**").permitAll()
                         .anyRequest().authenticated()
                 )
