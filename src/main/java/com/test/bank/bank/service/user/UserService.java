@@ -13,4 +13,5 @@ public interface UserService {
     ResponseEntity<?> changeEmail(UserDetails userDetails, String email);
 
     ResponseEntity<?> deleteEmail(UserDetails userDetails);
+    void updateBalance();
 }

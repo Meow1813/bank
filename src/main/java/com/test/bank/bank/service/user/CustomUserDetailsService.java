@@ -1,4 +1,4 @@
-package com.test.bank.bank.service;
+package com.test.bank.bank.service.user;
 
 import com.test.bank.bank.domain.entity.User;
 import com.test.bank.bank.repository.UserRepository;
@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
+
     @Autowired
     private UserRepository userRepository;
     @Override
