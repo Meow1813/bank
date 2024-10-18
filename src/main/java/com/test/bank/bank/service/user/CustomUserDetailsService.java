@@ -1,4 +1,4 @@
-package com.test.bank.bank.service;
+package com.test.bank.bank.service.user;
 
 import com.test.bank.bank.domain.entity.User;
 import com.test.bank.bank.repository.UserRepository;

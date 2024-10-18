@@ -19,7 +19,6 @@ public class StuffController {
 
     @PostMapping("/addUser")
     public ResponseEntity<?> user(@RequestBody UserCreateDTO user){
-        log.info("контроллер");
         return stuffService.addUser(user);
 
     }
